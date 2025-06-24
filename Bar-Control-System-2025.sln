@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025", "Bar-Control-System-2025.csproj", "{D05E90E7-9101-4CFD-935A-15D12306776E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D05E90E7-9101-4CFD-935A-15D12306776E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05E90E7-9101-4CFD-935A-15D12306776E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05E90E7-9101-4CFD-935A-15D12306776E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05E90E7-9101-4CFD-935A-15D12306776E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09AE93E6-8F91-46C7-80F4-F6A7A2D348FB}
+	EndGlobalSection
+EndGlobal
