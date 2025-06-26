@@ -4,7 +4,9 @@ namespace Bar_Control_System_2025.ProductsModule
 {
     public class ProductView : BaseView<Product>, IMainView
     {
-        public ProductView(ProductRepository repository) : base("Product", repository);
+        public ProductView(ProductRepository repository) : base("Product", repository)
+        {
+        }
 
         public override void ViewRegister(bool showHeader)
         {
