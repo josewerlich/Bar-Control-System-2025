@@ -1,5 +1,6 @@
 ﻿
 
+using Bar_Control_System_2025.ProductsModule;
 using Bar_Control_System_2025.WaiterModule;
 
 namespace Bar_Control_System_2025.AccountModule
@@ -16,99 +17,99 @@ namespace Bar_Control_System_2025.AccountModule
 
         public Account(string customer, Table table, Waiter waiter)
         {
-            Titular = titular;
-            Mesa = mesa;
-            Garcom = garcom;
-            Pedidos = new Pedido[100];
+            Customer = customer;
+            Table = table;
+            Waiter = waiter;
+            Order = new Order[100];
 
-            Abrir();
+            Open();
         }
 
-        public override void UpdateRegister(Conta registroAtualizado)
+        public override void UpdateRegister(Account updateRegister)
         {
-            EstaAberta = registroAtualizado.EstaAberta;
-            Fechamento = registroAtualizado.Fechamento;
+            StillOpen = updateRegister.StillOpen;
+            DateTimeClosing = updateRegister.DateTimeClosing;
         }
 
-        public override string Validar()
+        public override string Validate()
         {
-            string erros = string.Empty;
+            string errors = string.Empty;
 
-            if (Titular.Length < 3 || Titular.Length > 100)
-                erros += "O campo \"Titular\" deve conter entre 3 e 100 caracteres.";
+            if (Customer.Length < 3 || Customer.Length > 100)
+                errors += "The field \"Customer\" must have between 3 and 100 characters.";
 
-            if (Mesa == null)
-                erros += "O campo \"Mesa\" é obrigatório.";
+            if (Table == null)
+                errors += "The field \"Table\" is requested.";
 
-            if (Garcom == null)
-                erros += "O campo \"Garçom\" é obrigatório.";
+            if (Waiter == null)
+                errors += "The field \"Waiter\" is requested.";
 
-            return erros;
+            return errors;
         }
 
-        public void Abrir()
+        public void Open()
         {
-            EstaAberta = true;
-            Abertura = DateTime.Now;
+            StillOpen = true;
+            DateTimeOpening = DateTime.Now;
 
-            Mesa.Ocupar();
+            Table.GetTable();
         }
 
-        public void Fechar()
+        public void Close()
         {
-            EstaAberta = false;
-            Fechamento = DateTime.Now;
+            StillOpen = false;
+            DateTimeClosing = DateTime.Now;
 
-            Mesa.Desocupar();
+            Table.GetOutofTable();
         }
 
-        public decimal CalcularValorTotal()
+        public decimal CalculateTotalCost()
         {
-            decimal valorTotal = 0;
+            decimal totalCost = 0;
 
-            for (int i = 0; i < Pedidos.Length; i++)
+            for (int i = 0; i < Order.Length; i++)
             {
-                if (Pedidos[i] == null)
+                if (Order[i] == null)
                     continue;
 
-                valorTotal += Pedidos[i].CalcularTotalParcial();
+                totalCost += Order[i].TotalCostPartial();
             }
-            return valorTotal;
+            return totalCost;
         }
 
 
-        public Pedido RegistrarPedido(Produto produto, int quantidadeEscolhida)
+        public Order RegisterOrder(Product product, int quantity)
         {
-            Pedido novoPedido = new Pedido(produto, quantidadeEscolhida);
+            Order newOrder = new Order(product, quantity);
 
-            Pedidos[EncontrarIndicePedidosVazio()] = novoPedido;
+            Order[FindAvailableID()] = newOrder;
 
-            return novoPedido;
+            return newOrder;
         }
 
-        public void RemoverPedido(int idPedido)
+        public void OrderRemoval(int idOrder)
         {
-            int indiceParaRemover = -1;
+            int idToRemove = -1;
 
-            for (int i = 0; i < Pedidos.Length; i++)
+            for (int i = 0; i < Order.Length; i++)
             {
-                if (Pedidos[i] == null) continue;
+                if (Order[i] == null) continue;
 
-                if (Pedidos[i].Id == idPedido)
+                if (Order[i].id == idOrder)
                 {
-                    indiceParaRemover = i;
+                    idToRemove = i;
                     break;
                 }
             }
 
-            Pedidos[indiceParaRemover] = null;
+            Order[idToRemove] = null;
         }
 
-        private int EncontrarIndicePedidosVazio()
+        private int FindAvailableID()
         {
-            for (int i = 0; i < Pedidos.Length; i++)
+            for (int i = 0; i < Order.Length; i++)
             {
-                if (Pedidos[i] == null)
+                if (Order[i] == null)
                     return i;
             }
 
