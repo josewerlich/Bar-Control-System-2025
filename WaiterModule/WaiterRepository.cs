@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bar_Control_System_2025.ConsoleApp.Shared;
 
-namespace Bar_Control_System_2025.WaiterModule
-{
-    class WaiterRepository
-    {
-    }
-}
+namespace Bar_Control_System_2025.WaiterModule;
+
+    public class WaiterRepository : BaseRepository<Waiter>;
+    
+    
+
