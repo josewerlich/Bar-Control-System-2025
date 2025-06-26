@@ -1,28 +1,43 @@
-﻿using Bar_Control_System_2025.ConsoleApp.Shared;
+﻿using Bar_Control_System_2025.AccountModule;
+using Bar_Control_System_2025.ConsoleApp.Shared;
 
 namespace Bar_Control_System_2025
 {
- 
-        internal class Program
-        {
-            static void Main(string[] args)
-            {
-                MainView mainView = new MainView();
 
-                while (true)
-                {
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            MainView mainView = new MainView();
+
+            while (true)
+            {
                 mainView.ShowMainMenu();
 
-                    IMainView selectedView = mainView.GetView();
+                IMainView selectedView = mainView.GetView();
 
-                    if (selectedView == null)
-                        break;
+                if (selectedView == null)
+                    break;
 
-                    char userOption = selectedView.ShowMenu();
+                char userOption = selectedView.ShowMenu();
 
-                    if (char.ToUpper(userOption) == 'E')
-                        break;
+                if (char.ToUpper(userOption) == 'E')
+                    break;
 
+                if (selectedView is AccountView accountView)
+                {
+
+                    switch (userOption)
+                    {
+                        case '1': accountView.AddRegister(); break;
+
+                        case '2': accountView.ShowOrderManagementView(); break;
+
+                        case '3': accountView.ViewRegister(true); break;
+                    }
+                }
+                else
+                {
                     switch (userOption)
                     {
                         case '1': selectedView.AddRegister(); break;
@@ -36,4 +51,6 @@ namespace Bar_Control_System_2025
                 }
             }
         }
+    }
+
     }
