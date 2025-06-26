@@ -74,13 +74,13 @@ public class MainView
             return tableView;
 
         if (userOption == '2')
-            return null;
+            return waiterView;
 
         if (userOption == '3')
-            return null;
+            return productView;
 
         if (userOption == '4')
-            return null;
+            return accountView;
 
         return null;
     }
