@@ -87,7 +87,7 @@ namespace Bar_Control_System_2025.AccountModule
             return newOrder;
         }
 
-        public void OrderRemoval(int idOrder)
+        public void RemoveOrder(int idOrder)
         {
             int idToRemove = -1;
 
