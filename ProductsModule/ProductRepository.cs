@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Bar_Control_System_2025.ConsoleApp.Shared;
 
-namespace Bar_Control_System_2025.ProductsModule
-{
-    class ProductRepository
-    {
-    }
-}
+namespace Bar_Control_System_2025.ProductsModule;
+
+    public class ProductRepository : BaseRepository<Product>;
+
+
