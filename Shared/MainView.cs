@@ -1,7 +1,7 @@
-﻿
-
-
+﻿using Bar_Control_System_2025.AccountModule;
 using Bar_Control_System_2025.ConsoleApp.Shared;
+using Bar_Control_System_2025.ProductsModule;
+using Bar_Control_System_2025.WaiterModule;
 
 public class MainView
 {
@@ -10,10 +10,40 @@ public class MainView
     private TableRepository tableRepository;
     private TableView tableView;
 
+    private WaiterRepository waiterRepository;
+    private WaiterView waiterView;
+
+    private ProductRepository productRepository;
+    private ProductView productView;
+
+    private AccountRepository accountRepository;
+    private AccountView accountView;
+
     public MainView()
     {
         tableRepository = new TableRepository();
+        waiterRepository = new WaiterRepository();
+        productRepository = new ProductRepository();   
+        accountRepository = new AccountRepository();
+
         tableView = new TableView(tableRepository);
+        waiterView = new WaiterView(waiterRepository);
+        productView = new ProductView(productRepository);
+
+        accountView = new AccountView(
+            accountRepository,
+            productRepository,
+            tableRepository,
+            waiterRepository
+        );
+        //Test Data 
+        Table table = new Table(1, 3);
+        Waiter waiter = new Waiter("John", "555-55-5555");
+        Product product = new Product("Blue Moon 12oz", 4.50m);
+
+        tableRepository.AddRegister(table);
+        waiterRepository.AddRegister(waiter);
+        productRepository.AddRegister(product);
     }
 
     public void ShowMainMenu()
