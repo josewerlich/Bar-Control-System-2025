@@ -49,7 +49,7 @@ public class AccountView : IMainView
 
         Console.WriteLine();
 
-        ViewRegisters(false);
+        ViewRegister(false);
 
         Console.Write("Type the ID of the account you want to update: ");
         int id = Convert.ToInt32(Console.ReadLine());
@@ -85,7 +85,7 @@ public class AccountView : IMainView
         }
     }
 
-    public void AddAccount()
+    public void AddRegister()
     {
         ShowHeader();
 
@@ -107,7 +107,7 @@ public class AccountView : IMainView
             );
             
 
-            AddAccount();
+            AddRegister();
 
             return;
         }
@@ -121,11 +121,11 @@ public class AccountView : IMainView
     {
     }
 
-    public void RemoveRegister()
+    public void DeleteRegister()
     {
     }
 
-    public void ViewRegisters(bool showHeader)
+    public void ViewRegister(bool showHeader)
     {
         if (showHeader)
             ShowHeader();
