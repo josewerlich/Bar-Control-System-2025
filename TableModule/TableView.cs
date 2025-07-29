@@ -1,4 +1,5 @@
-﻿using Bar_Control_System_2025.ConsoleApp.Shared;
+﻿using Bar_Control_System_2025.Domain.TableModule;
+using Bar_Control_System_2025.Shared;
 
 
 

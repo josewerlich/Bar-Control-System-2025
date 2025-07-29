@@ -1,12 +1,28 @@
 ﻿using Bar_Control_System_2025.AccountModule;
-using Bar_Control_System_2025.ConsoleApp.Shared;
+using Bar_Control_System_2025.Domain.TableModule;
+using Bar_Control_System_2025.Infrastructure.Files.Shared;
+using Bar_Control_System_2025.Infrastructure.Files.TableModule;
+using Bar_Control_System_2025.Shared;
 
 namespace Bar_Control_System_2025
 {
 
     internal class Program
     {
+
         static void Main(string[] args)
+        {
+            DataContext context = new DataContext(loadData: true);
+
+            TableRepositoryInFile tableRepository = new TableRepositoryInFile(context);
+
+            Table table = new Table(1, 2);
+
+            tableRepository.AddRegister(table);
+
+            
+        }
+        static void Main2(string[] args)
         {
             MainView mainView = new MainView();
 

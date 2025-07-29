@@ -1,9 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025", "Bar-Control-System-2025.csproj", "{D05E90E7-9101-4CFD-935A-15D12306776E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{1C312CD3-8BD8-4BB7-AD45-5FD7001297DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infrastructure", "3. Infrastructure", "{7AF4833C-4E90-4221-BC5B-DA22081FEBD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025.Domain", "..\Bar-Control-System-2025.Domain\Bar-Control-System-2025.Domain.csproj", "{F098211F-D85C-417E-847C-30C3BA4D9899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025.Infrastructure.Memory", "..\Bar-Control-System-2025.Infrastructure.Memory\Bar-Control-System-2025.Infrastructure.Memory.csproj", "{832D4322-B8D9-4BC8-8336-92522384508A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025.Infrastructure.Files", "..\Bar-Control-System-2025.Infrastructure.Files\Bar-Control-System-2025.Infrastructure.Files.csproj", "{AD844922-31D1-4AED-9C1A-9F712BC60F9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,27 @@ Global
 		{D05E90E7-9101-4CFD-935A-15D12306776E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D05E90E7-9101-4CFD-935A-15D12306776E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D05E90E7-9101-4CFD-935A-15D12306776E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F098211F-D85C-417E-847C-30C3BA4D9899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F098211F-D85C-417E-847C-30C3BA4D9899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F098211F-D85C-417E-847C-30C3BA4D9899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F098211F-D85C-417E-847C-30C3BA4D9899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{832D4322-B8D9-4BC8-8336-92522384508A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{832D4322-B8D9-4BC8-8336-92522384508A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{832D4322-B8D9-4BC8-8336-92522384508A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{832D4322-B8D9-4BC8-8336-92522384508A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD844922-31D1-4AED-9C1A-9F712BC60F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD844922-31D1-4AED-9C1A-9F712BC60F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD844922-31D1-4AED-9C1A-9F712BC60F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD844922-31D1-4AED-9C1A-9F712BC60F9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D05E90E7-9101-4CFD-935A-15D12306776E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{F098211F-D85C-417E-847C-30C3BA4D9899} = {1C312CD3-8BD8-4BB7-AD45-5FD7001297DC}
+		{832D4322-B8D9-4BC8-8336-92522384508A} = {7AF4833C-4E90-4221-BC5B-DA22081FEBD8}
+		{AD844922-31D1-4AED-9C1A-9F712BC60F9E} = {7AF4833C-4E90-4221-BC5B-DA22081FEBD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09AE93E6-8F91-46C7-80F4-F6A7A2D348FB}

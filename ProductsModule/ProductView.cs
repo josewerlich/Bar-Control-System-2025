@@ -1,4 +1,7 @@
-﻿using Bar_Control_System_2025.ConsoleApp.Shared;
+﻿
+using Bar_Control_System_2025.Domain.ProductsModule;
+using Bar_Control_System_2025.Infrastructure.Memory.ProductModule;
+using Bar_Control_System_2025.Shared;
 
 namespace Bar_Control_System_2025.ProductsModule
 {

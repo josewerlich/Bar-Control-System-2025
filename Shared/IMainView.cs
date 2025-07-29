@@ -1,4 +1,4 @@
-﻿namespace Bar_Control_System_2025.ConsoleApp.Shared;
+﻿namespace Bar_Control_System_2025.Shared;
 
 public interface IMainView
 {

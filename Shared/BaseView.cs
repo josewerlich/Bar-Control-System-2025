@@ -1,16 +1,40 @@
-﻿
+﻿using Bar_Control_System_2025.Domain.Shared;
+using Bar_Control_System_2025.Infrastructure.Memory.ProductModule;
+using Bar_Control_System_2025.Infrastructure.Memory.WaiterModule;
 
-namespace Bar_Control_System_2025.ConsoleApp.Shared;
+namespace Bar_Control_System_2025.Shared;
 
 public abstract class BaseView<TEntity> where TEntity : BaseEntity<TEntity>
 {
     protected string entityName;
     protected BaseRepository<TEntity> repository;
+    private string v;
+    private ProductRepository repository1;
+    private TableRepository tableRepository;
+    private WaiterRepository repository2;
 
     protected BaseView(string entityName, BaseRepository<TEntity> repository)
     {
         this.entityName = entityName;
         this.repository = repository;
+    }
+
+    protected BaseView(string v, ProductRepository repository1)
+    {
+        this.v = v;
+        this.repository1 = repository1;
+    }
+
+    protected BaseView(string v, TableRepository tableRepository)
+    {
+        this.v = v;
+        this.tableRepository = tableRepository;
+    }
+
+    protected BaseView(string v, WaiterRepository repository2)
+    {
+        this.v = v;
+        this.repository2 = repository2;
     }
 
     public virtual char ShowMenu()

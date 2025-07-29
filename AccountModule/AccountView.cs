@@ -1,6 +1,12 @@
-﻿using Bar_Control_System_2025.ConsoleApp.Shared;
-using Bar_Control_System_2025.ProductsModule;
-using Bar_Control_System_2025.WaiterModule;
+﻿using Bar_Control_System_2025.Domain.AccountModule;
+using Bar_Control_System_2025.Domain.ProductsModule;
+using Bar_Control_System_2025.Domain.TableModule;
+using Bar_Control_System_2025.Domain.WaiterModule;
+using Bar_Control_System_2025.Infrastructure.Memory.AccountModule;
+using Bar_Control_System_2025.Infrastructure.Memory.ProductModule;
+using Bar_Control_System_2025.Infrastructure.Memory.WaiterModule;
+using Bar_Control_System_2025.Shared;
+
 
 namespace Bar_Control_System_2025.AccountModule;
 
