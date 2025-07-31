@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025.Inf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025.Infrastructure.Files", "..\Bar-Control-System-2025.Infrastructure.Files\Bar-Control-System-2025.Infrastructure.Files.csproj", "{AD844922-31D1-4AED-9C1A-9F712BC60F9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bar-Control-System-2025.WebApp", "..\Bar-Control-System-2025.WebApp\Bar-Control-System-2025.WebApp.csproj", "{A39AB90D-339A-4D87-9BDF-255BC32A9990}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AD844922-31D1-4AED-9C1A-9F712BC60F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD844922-31D1-4AED-9C1A-9F712BC60F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD844922-31D1-4AED-9C1A-9F712BC60F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39AB90D-339A-4D87-9BDF-255BC32A9990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39AB90D-339A-4D87-9BDF-255BC32A9990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39AB90D-339A-4D87-9BDF-255BC32A9990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39AB90D-339A-4D87-9BDF-255BC32A9990}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{F098211F-D85C-417E-847C-30C3BA4D9899} = {1C312CD3-8BD8-4BB7-AD45-5FD7001297DC}
 		{832D4322-B8D9-4BC8-8336-92522384508A} = {7AF4833C-4E90-4221-BC5B-DA22081FEBD8}
 		{AD844922-31D1-4AED-9C1A-9F712BC60F9E} = {7AF4833C-4E90-4221-BC5B-DA22081FEBD8}
+		{A39AB90D-339A-4D87-9BDF-255BC32A9990} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09AE93E6-8F91-46C7-80F4-F6A7A2D348FB}
