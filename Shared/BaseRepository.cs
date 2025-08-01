@@ -34,7 +34,7 @@ public abstract class BaseRepository<TEntity> where TEntity : BaseEntity<TEntity
             if (register[i] == null)
                 continue;
 
-            else if (register[i].id == idSelecionado)
+            else if (register[i].Id == idSelecionado)
             {
                 register[i] = null;
 
@@ -59,7 +59,7 @@ public abstract class BaseRepository<TEntity> where TEntity : BaseEntity<TEntity
             if (Register == null)
                 continue;
 
-            if (Register.id == idSelected)
+            if (Register.Id == idSelected)
                 return Register;
         }
 

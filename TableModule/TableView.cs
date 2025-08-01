@@ -36,7 +36,7 @@ public class TableView : BaseView<Table>, IMainView
 
             Console.WriteLine(
               "{0, -10} | {1, -30} | {2, -30}",
-                t.id, t.TableNumber, t.TableSize, statusTable
+                t.Id, t.TableNumber, t.TableSize, statusTable
             );
         }
 

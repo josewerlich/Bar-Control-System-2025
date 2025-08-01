@@ -33,7 +33,7 @@ namespace Bar_Control_System_2025.WaiterModule
                 if (w == null)
                     continue;
 
-                Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", w.id, w.Name, w.SSN);
+                Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", w.Id, w.Name, w.SSN);
             }
 
             ShowMessage("Press ENTER to continue...", ConsoleColor.Green);

@@ -158,7 +158,7 @@ public class AccountView : IMainView
 
             Console.WriteLine(
                 "{0, -10} | {1, -20} | {2, -14} | {3, -20} | {4, -20} | {5, -20}",
-                a.id, a.Customer, a.Table.TableNumber, a.Waiter.Name, a.DateTimeOpening.ToShortDateString(), accountStatus
+                a.Id, a.Customer, a.Table.TableNumber, a.Waiter.Name, a.DateTimeOpening.ToShortDateString(), accountStatus
             );
         }
 
@@ -249,7 +249,7 @@ public class AccountView : IMainView
 
             Console.WriteLine(
               "{0, -10} | {1, -20} | {2, -20} | {3, -30}",
-                t.id, t.TableNumber, t.TableSize, tableStatus
+                t.Id, t.TableNumber, t.TableSize, tableStatus
             );
         }
     }
@@ -274,7 +274,7 @@ public class AccountView : IMainView
             if (w == null)
                 continue;
 
-            Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", w.id, w.Name, w.SSN);
+            Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", w.Id, w.Name, w.SSN);
         }
     }
 
@@ -323,7 +323,7 @@ public class AccountView : IMainView
             if (p == null)
                 continue;
 
-            Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", p.id, p.Name, p.Cost.ToString("C2"));
+            Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", p.Id, p.Name, p.Cost.ToString("C2"));
         }
     }
 

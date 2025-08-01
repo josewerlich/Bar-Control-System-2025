@@ -32,7 +32,7 @@ namespace Bar_Control_System_2025.ProductsModule
                 if (p == null)
                     continue;
 
-                Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", p.id, p.Name, p.Cost.ToString("C2"));
+                Console.WriteLine("{0, -10} | {1, -30} | {2, -30}", p.Id, p.Name, p.Cost.ToString("C2"));
             }
 
             ShowMessage("Press ENTER to continue...", ConsoleColor.Green);
