@@ -14,7 +14,7 @@ namespace Bar_Control_System_2025
         {
             DataContext context = new DataContext(loadData: true);
 
-            TableRepositoryInFile tableRepository = new TableRepositoryInFile(context);
+            ProductRepositoryInFile tableRepository = new TableRepositoryInFile(context);
 
             Table table = new Table(1, 2);
 
