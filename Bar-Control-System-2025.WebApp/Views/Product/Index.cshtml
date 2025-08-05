@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Product Viewer";
+}
+
+@model ProductViewModels;
+
+<a class="btn btn-primary" href="/Product/Add">
+    <i class="bi bi-plus"></i>
+    Add Product
+</a>
+
+<div class="row mt-4">
+    @foreach (DetailProductViewModel p in Model.Register)
+    {
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">#@p.Id</h5>
+
+                    <p class="card-text"><strong>Name:</strong> @p.Name</p>
+                    <p class="card-text"><strong>Cost:</strong> @p.Cost</p>
+
+                </div>
+
+                <div class="card-actions ms-auto me-3 mb-3 d-flex gap-1">
+                    <a class="btn btn-sm btn-primary rounded d-flex justify-content-center align-items-center" style="height: 35px; width: 35px;" href="/Product/Edit/@p.Id">
+                        <i class="bi bi-pen"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger rounded d-flex justify-content-center align-items-center" style="height: 35px; width: 35px;" href="/Product/Delete/@p.Id">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

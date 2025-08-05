@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bar-Control-System-2025.Domain\Bar-Control-System-2025.Domain.csproj" />
-    <ProjectReference Include="..\Bar-Control-System-2025.Infrastructure.Files\Bar-Control-System-2025.Infrastructure.Files.csproj" />
-    <ProjectReference Include="..\Bar-Control-System-2025.Infrastructure.Memory\Bar-Control-System-2025.Infrastructure.Memory.csproj" />
+    <ProjectReference Include="Bar-Control-System-2025.Domain\Bar-Control-System-2025.Domain.csproj" />
+    <ProjectReference Include="Bar-Control-System-2025.Infrastructure.Files\Bar-Control-System-2025.Infrastructure.Files.csproj" />
+    <ProjectReference Include="Bar-Control-System-2025.WebApp\Bar-Control-System-2025.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

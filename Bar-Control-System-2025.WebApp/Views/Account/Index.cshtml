@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Table Viewer";
+}
+
+@model TableViewModels;
+
+<a class="btn btn-primary" href="/Table/Add">
+    <i class="bi bi-plus"></i>
+    Add Table
+</a>
+
+<div class="row mt-4">
+    @foreach (DetailTableViewModel t in Model.Register)
+    {
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">#@t.TableNumber</h5>
+
+                    <p class="card-text"><strong>Table Size:</strong> @t.TableSize places</p>
+
+                </div>
+
+                <div class="card-actions ms-auto me-3 mb-3 d-flex gap-1">
+                    <a class="btn btn-sm btn-primary rounded d-flex justify-content-center align-items-center" style="height: 35px; width: 35px;" href="/Table/Edit/@t.Id">
+                        <i class="bi bi-pen"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger rounded d-flex justify-content-center align-items-center" style="height: 35px; width: 35px;" href="/Table/Delete/@t.Id">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
