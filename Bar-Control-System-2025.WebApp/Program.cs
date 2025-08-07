@@ -1,3 +1,4 @@
+using Bar_Control_System_2025.Infrastructure.Files.AccountModule;
 using Bar_Control_System_2025.Infrastructure.Files.ProductRepositoryInFile;
 using Bar_Control_System_2025.Infrastructure.Files.Shared;
 using Bar_Control_System_2025.Infrastructure.Files.TableModule;
@@ -16,6 +17,7 @@ namespace Bar_Control_System_2025.WebApp
             builder.Services.AddScoped<TableRepositoryInFile>();
             builder.Services.AddScoped<ProductReposirotyInFile>();
             builder.Services.AddScoped<WaiterRepositoryInFile>();
+            builder.Services.AddScoped<AccountRepositoryInFile>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

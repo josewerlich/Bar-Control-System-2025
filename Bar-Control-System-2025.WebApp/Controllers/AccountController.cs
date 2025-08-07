@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bar_Control_System_2025.WebApp.Controllers;
 
-public class ContaController : Controller
+public class AccountController : Controller
 {
     private readonly DataContext dataContext;
     private readonly AccountRepositoryInFile accountRepository;
@@ -21,7 +21,7 @@ public class ContaController : Controller
     private readonly WaiterRepositoryInFile waiterRepository;
     private readonly ProductReposirotyInFile productReposiroty;
 
-    public ContaController()
+    public AccountController()
     {
         dataContext = new DataContext(true);
 

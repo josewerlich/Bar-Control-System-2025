@@ -289,20 +289,20 @@ public class AccountView : IMainView
             "ID", "Product", "Quantity", "Partial Cost"
         );
 
-        Order[] order = account.Order;
+        //List<Account> order = accountRepository.SelectAccount();
 
-        for (int i = 0; i < order.Length; i++)
-        {
-            Order o = order[i];
+        //for (int i = 0; i < order.Length; i++)
+        //{
+        //    Order o = order[i];
 
-            if (o == null)
-                continue;
+        //    if (o == null)
+        //        continue;
 
-            Console.WriteLine(
-                "{0, -10} | {1, -20} | {2, -14} | {3, -20}",
-                o.id, o.Product.Name, o.Quantity, o.TotalCostPartial().ToString("C2")
-            );
-        }
+        //    Console.WriteLine(
+        //        "{0, -10} | {1, -20} | {2, -14} | {3, -20}",
+        //        o.id, o.Product.Name, o.Quantity, o.TotalCostPartial().ToString("C2")
+        //    );
+        //}
     }
 
     private void ProductsView()

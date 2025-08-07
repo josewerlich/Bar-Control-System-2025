@@ -64,7 +64,7 @@ public class ViewAccountViewModel
                 a.Waiter.Name,
                 a.StillOpen,
                 a.CalculateTotalCost(),
-                a.Order.ToList()
+                a.Orders.ToList()
             );
 
             Registers.Add(detailAccountViewModel);
