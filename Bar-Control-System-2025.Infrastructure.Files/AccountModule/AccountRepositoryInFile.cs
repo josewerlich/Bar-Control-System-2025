@@ -7,53 +7,53 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Bar_Control_System_2025.Infrastructure.Files.AccountModule;
 
-public class RepositorioContaEmArquivo : RepositorioBaseEmArquivo<Conta>
+public class AccountRepositoryInFile : BaseRepositoryToFile<Account>
 {
-    public RepositorioContaEmArquivo(ContextoDados contextoDados) : base(contextoDados)
+    public AccountRepositoryInFile(DataContext dataContext) : base(dataContext)
     {
     }
 
-    protected override List<Conta> ObterRegistros()
+    protected override List<Account> GetRegister()
     {
-        return contextoDados.Contas;
+        return dataContext.Accounts;
     }
 
-    public List<Conta> SelecionarContasPorData(DateTime dataFaturamento)
+    public List<Account> SelectAccountUsingDateAndTime(DateTime dataOpening)
     {
-        List<Conta> contasDoDia = new List<Conta>();
+        List<Account> ordersFromTheDay = new List<Account>();
 
-        foreach (Conta conta in registros)
+        foreach (Account account in register)
         {
-            if (conta.Fechamento.Date == dataFaturamento.Date)
-                contasDoDia.Add(conta);
+            if (account.DateTimeOpening.Date == dataOpening.Date)
+                ordersFromTheDay.Add(account);
         }
 
-        return contasDoDia;
+        return ordersFromTheDay;
     }
 
-    public List<Conta> SelecionarContasEmAberto()
+    public List<Account> SelecionarContasEmAberto()
     {
-        List<Conta> contasEmAberto = new List<Conta>();
+        List<Account> openAccount = new List<Account>();
 
-        foreach (Conta conta in registros)
+        foreach (Account account in register)
         {
-            if (conta.EstaAberta)
-                contasEmAberto.Add(conta);
+            if (account.StillOpen)
+                openAccount.Add(account);
         }
 
-        return contasEmAberto;
+        return openAccount;
     }
 
-    public List<Conta> SelecionarContasFechadas()
+    public List<Account> SelectClosedAccounts()
     {
-        List<Conta> contasFechadas = new List<Conta>();
+        List<Account> closedAccounts = new List<Account>();
 
-        foreach (Conta conta in registros)
+        foreach (Account account in register)
         {
-            if (!conta.EstaAberta)
-                contasFechadas.Add(conta);
+            if (!account.StillOpen)
+                closedAccounts.Add(account);
         }
 
-        return contasFechadas;
+        return closedAccounts;
     }
 }

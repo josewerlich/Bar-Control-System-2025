@@ -7,20 +7,26 @@ namespace Bar_Control_System_2025.Domain.AccountModule
 {
     public class Account : BaseEntity<Account>
     {
-        public string Customer;
-        public Table Table;
-        public Waiter Waiter;
-        public DateTime DateTimeOpening;
-        public DateTime DateTimeClosing;
-        public bool StillOpen; 
-        public Order[] Order; 
+        public string Customer { get; set; }
+        public Table Table { get; set; }
+        public Waiter Waiter { get; set; }
+
+        public DateTime DateTimeOpening { get; set; }
+
+        public DateTime DateTimeClosing { get; set; }
+        public bool StillOpen { get; set; }
+        public List<Order> Orders { get; set; }
+
+        public Account()
+        { }
+
 
         public Account(string customer, Table table, Waiter waiter)
         {
             Customer = customer;
             Table = table;
             Waiter = waiter;
-            Order = new Order[100];
+            Orders = new List<Order>();
 
             Open();
         }
@@ -67,12 +73,10 @@ namespace Bar_Control_System_2025.Domain.AccountModule
         {
             decimal totalCost = 0;
 
-            for (int i = 0; i < Order.Length; i++)
+            for (int i = 0; i < Orders.Count; i++)
             {
-                if (Order[i] == null)
-                    continue;
-
-                totalCost += Order[i].TotalCostPartial();
+               
+                totalCost += Orders[i].TotalCostPartial();
             }
             return totalCost;
         }
@@ -82,7 +86,7 @@ namespace Bar_Control_System_2025.Domain.AccountModule
         {
             Order newOrder = new Order(product, quantity);
 
-            Order[FindAvailableID()] = newOrder;
+            Orders.Add(newOrder);
 
             return newOrder;
         }
@@ -91,30 +95,20 @@ namespace Bar_Control_System_2025.Domain.AccountModule
         {
             int idToRemove = -1;
 
-            for (int i = 0; i < Order.Length; i++)
+            for (int i = 0; i < Orders.Count; i++)
             {
-                if (Order[i] == null) continue;
 
-                if (Order[i].id == idOrder)
+                if (Orders[i].id == idOrder)
                 {
                     idToRemove = i;
                     break;
                 }
             }
 
-            Order[idToRemove] = null;
+            Orders.RemoveAt(idToRemove);
         }
 
-        private int FindAvailableID()
-        {
-            for (int i = 0; i < Order.Length; i++)
-            {
-                if (Order[i] == null)
-                    return i;
-            }
-
-            return -1;
-        }
+        
     }
 
 }
