@@ -1,32 +1,32 @@
 ﻿
 @{
-    ViewBag.Title = "Table Viewer";
+    ViewBag.Title = "Account Viewer";
 }
 
-@model TableViewModels;
+@model ViewAccountViewModel;
 
-<a class="btn btn-primary" asp-action="Abrir">
+<a class="btn btn-primary" asp-action="Open">
     <i class="bi bi-plus"></i>
-    Abrir nova
+    Opne new
 </a>
 
 <div class="row mt-4">
-    @foreach (DetalhesContaViewModel c in Model.Registros)
+    @foreach (DetailAccountViewModel a in Model.Registers)
     {
         <div class="col-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">@c.Titular</h5>
-                    <p class="card-text mb-0"><strong>Mesa:</strong> #@c.Mesa</p>
-                    <p class="card-text mb-0"><strong>Garçom:</strong> @c.Garcom</p>
+                    <h5 class="card-title">@a.Customer</h5>
+                    <p class="card-text mb-0"><strong>Table:</strong> #@a.Table</p>
+                    <p class="card-text mb-0"><strong>Waiter:</strong> @a.Waiter</p>
 
-                    @if (c.EstaAberta)
+                    @if (a.StillOpen)
                     {
                         <span class="d-flex gap-1 justify-content-end mt-4">
-                            <a title="Gerenciar pedidos" asp-action="GerenciarPedidos" asp-route-id="@c.Id" style="height: 35px; width: 35px;" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center">
+                            <a title="Manage Orders" asp-action="ManagerOrders" asp-route-id="@a.Id" style="height: 35px; width: 35px;" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center">
                                 <i class="bi bi-cart"></i>
                             </a>
-                            <a title="Fechar conta" asp-action="Fechar" asp-route-id="@c.Id" style="height: 35px; width: 35px;" class="btn btn-success rounded-circle d-flex justify-content-center align-items-center">
+                            <a title="Close Account" asp-action="Close" asp-route-id="@a.Id" style="height: 35px; width: 35px;" class="btn btn-success rounded-circle d-flex justify-content-center align-items-center">
                                 <i class="bi bi-cash-coin"></i>
                             </a>
                         </span>
