@@ -1,69 +1,74 @@
-﻿using Bar_Control_System_2025.Domain.TableModule;
+﻿
+
+using Bar_Control_System_2025.Domain.AccountModule;
+using Bar_Control_System_2025.Domain.TableModule;
+using Bar_Control_System_2025.Domain.WaiterModule;
+using Bar_Control_System_2025.Infrastructure.Files.AccountModule;
+using Bar_Control_System_2025.Infrastructure.Files.ProductRepositoryInFile;
 using Bar_Control_System_2025.Infrastructure.Files.Shared;
 using Bar_Control_System_2025.Infrastructure.Files.TableModule;
 using Bar_Control_System_2025.Infrastructure.Files.WaiterRepositoryInFile;
 using Bar_Control_System_2025.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
 
-//namespace Bar_Control_System_2025.WebApp.Controllers
+namespace Bar_Control_System_2025.WebApp.Controllers;
 
 public class ContaController : Controller
 {
-    private readonly ContextoDados contextoDados;
-    private readonly RepositorioContaEmArquivo repositorioConta;
-    private readonly RepositorioMesaEmArquivo repositorioMesa;
-    private readonly RepositorioGarcomEmArquivo repositorioGarcom;
-    private readonly RepositorioProdutoEmArquivo repositorioProduto;
+    private readonly DataContext dataContext;
+    private readonly AccountRepositoryInFile accountRepository;
+    private readonly TableRepositoryInFile tableRepository;
+    private readonly WaiterRepositoryInFile waiterRepository;
+    private readonly ProductReposirotyInFile productReposiroty;
 
     public ContaController()
     {
-        contextoDados = new ContextoDados(true);
+        dataContext = new DataContext(true);
 
-        repositorioConta = new RepositorioContaEmArquivo(contextoDados);
-        repositorioMesa = new RepositorioMesaEmArquivo(contextoDados);
-        repositorioGarcom = new RepositorioGarcomEmArquivo(contextoDados);
-        repositorioProduto = new RepositorioProdutoEmArquivo(contextoDados);
+        accountRepository = new AccountRepositoryInFile(dataContext);
+        tableRepository = new TableRepositoryInFile(dataContext);
+        waiterRepository = new WaiterRepositoryInFile(dataContext);
+        productReposiroty = new ProductReposirotyInFile(dataContext);
     }
 
 
     [HttpGet]
     public IActionResult Index()
     {
-        List<Conta> contas = repositorioConta.SelecionarRegistros();
+        List<Account> accounts = accountRepository.SelectRegister();
 
-        VisualizarContasViewModel visualizarContasVm = new VisualizarContasViewModel(contas);
+        ViewAccountViewModel viewAccountsViewModel = new ViewAccountViewModel(accounts);
 
-        return View(visualizarContasVm);
+        return View(viewAccountsViewModel);
     }
 
     [HttpGet]
-    public IActionResult Abrir()
+    public IActionResult Open()
     {
-        List<Mesa> mesas = repositorioMesa.SelecionarRegistros();
-        List<Garcom> garcons = repositorioGarcom.SelecionarRegistros();
+        List<Table> tables = tableRepository.SelectRegister();
+        List<Waiter> waiters = waiterRepository.SelectRegister();
 
-        AbrirContaViewModel abrirContaVm = new AbrirContaViewModel(mesas, garcons);
+        OpenAccountViewModel openAccountViewModel = new OpenAccountViewModel(tables, waiters);
 
-        return View(abrirContaVm);
+        return View(openAccountViewModel);
     }
 
     [HttpPost]
-    public IActionResult Abrir(AbrirContaViewModel abrirVM)
+    public IActionResult Open(OpenAccountViewModel openAccountViewModel)
     {
         if (!ModelState.IsValid)
-            return View(abrirVM);
+            return View(openAccountViewModel);
 
-        Mesa mesaSelecionada = repositorioMesa.SelecionarRegistroPorId(abrirVM.MesaId);
-        Garcom garcomSelecionado = repositorioGarcom.SelecionarRegistroPorId(abrirVM.GarcomId);
+        Table selectedTable = tableRepository.SelectRegisterID(openAccountViewModel.TableId);
+        Waiter selectedWaiter = waiterRepository.SelectRegisterID(openAccountViewModel.WaiterId);
 
-        Conta conta = new Conta(
-            abrirVM.Titular,
-            mesaSelecionada,
-            garcomSelecionado
+        Account account = new Account(
+            openAccountViewModel.Customer,
+            selectedTable,
+            selectedWaiter
         );
 
-        repositorioConta.CadastrarRegistro(conta);
+        accountRepository.AddRegister(account);
 
         return RedirectToAction(nameof(Index));
     }

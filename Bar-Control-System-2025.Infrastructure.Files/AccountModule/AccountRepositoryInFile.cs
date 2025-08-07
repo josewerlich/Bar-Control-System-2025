@@ -31,7 +31,7 @@ public class AccountRepositoryInFile : BaseRepositoryToFile<Account>
         return ordersFromTheDay;
     }
 
-    public List<Account> SelecionarContasEmAberto()
+    public List<Account> SelectOpenAccounts()
     {
         List<Account> openAccount = new List<Account>();
 
