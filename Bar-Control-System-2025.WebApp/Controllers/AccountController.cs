@@ -1,93 +1,70 @@
 ﻿using Bar_Control_System_2025.Domain.TableModule;
 using Bar_Control_System_2025.Infrastructure.Files.Shared;
 using Bar_Control_System_2025.Infrastructure.Files.TableModule;
+using Bar_Control_System_2025.Infrastructure.Files.WaiterRepositoryInFile;
 using Bar_Control_System_2025.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
-namespace Bar_Control_System_2025.WebApp.Controllers;
-//{
-//   // public class TableController : Controller
-//    {
-//        private readonly ProductRepositoryInFile tableRepository;
+//namespace Bar_Control_System_2025.WebApp.Controllers
 
-//        public TableController(ProductRepositoryInFile tableRepository)
-//        {
-//            this.tableRepository = tableRepository;
-//        }
-//        public IActionResult Index()
-//        {
-//            List<Table> tables = tableRepository.SelectRegister();
+public class ContaController : Controller
+{
+    private readonly ContextoDados contextoDados;
+    private readonly RepositorioContaEmArquivo repositorioConta;
+    private readonly RepositorioMesaEmArquivo repositorioMesa;
+    private readonly RepositorioGarcomEmArquivo repositorioGarcom;
+    private readonly RepositorioProdutoEmArquivo repositorioProduto;
 
-//           TableViewModels viewModels = new TableViewModels(tables); 
+    public ContaController()
+    {
+        contextoDados = new ContextoDados(true);
 
-//            return View(viewModels);
-//        }
-//        [HttpGet]
-//        public IActionResult Add()
-//        {
-//            AddTableViewModel addTableViewModel = new AddTableViewModel();
+        repositorioConta = new RepositorioContaEmArquivo(contextoDados);
+        repositorioMesa = new RepositorioMesaEmArquivo(contextoDados);
+        repositorioGarcom = new RepositorioGarcomEmArquivo(contextoDados);
+        repositorioProduto = new RepositorioProdutoEmArquivo(contextoDados);
+    }
 
-//            return View(addTableViewModel);
-//        }
-//        [HttpPost]
-//        public IActionResult Add(AddTableViewModel addTableViewModel)
-//        {
-//           if(!ModelState.IsValid)
-//            {
-//                return View(addTableViewModel);
-//            }
 
-//            var entity = new Table(addTableViewModel.TableNumber, addTableViewModel.TableSize);
+    [HttpGet]
+    public IActionResult Index()
+    {
+        List<Conta> contas = repositorioConta.SelecionarRegistros();
 
-//            tableRepository.AddRegister(entity);
+        VisualizarContasViewModel visualizarContasVm = new VisualizarContasViewModel(contas);
 
-//            return RedirectToAction(nameof(Index));
-//        }
+        return View(visualizarContasVm);
+    }
 
-//        [HttpGet]
-//        public IActionResult Edit(int id)
-//        {
-//            var register = tableRepository.SelectRegisterID(id);
+    [HttpGet]
+    public IActionResult Abrir()
+    {
+        List<Mesa> mesas = repositorioMesa.SelecionarRegistros();
+        List<Garcom> garcons = repositorioGarcom.SelecionarRegistros();
 
-//            EditTableViewModel editTableViewModel = new EditTableViewModel(
-//                id,
-//                register.TableNumber,
-//                register.TableSize
-//                );
-//            return View(editTableViewModel);
-//        }
-//        [HttpPost]
-//        public IActionResult Edit(EditTableViewModel editTableViewModel)
-//        {
-//           if(!ModelState.IsValid)
-//            {
-//                return View(editTableViewModel);
-//            }
+        AbrirContaViewModel abrirContaVm = new AbrirContaViewModel(mesas, garcons);
 
-//           var selectedTable = new Table(editTableViewModel.TableNumber, editTableViewModel.TableSize);
+        return View(abrirContaVm);
+    }
 
-//            tableRepository.EditRegister(editTableViewModel.Id, selectedTable);
-//            return RedirectToAction(nameof(Index));
-//        }
-//        [HttpGet]
-//        public IActionResult Delete(int id)
-//        {
-//            var register = tableRepository.SelectRegisterID(id);
+    [HttpPost]
+    public IActionResult Abrir(AbrirContaViewModel abrirVM)
+    {
+        if (!ModelState.IsValid)
+            return View(abrirVM);
 
-//            DeleteTableViewModel deleteTableViewModel = new DeleteTableViewModel(
-//                id,
-//                register.TableNumber
-//               );
+        Mesa mesaSelecionada = repositorioMesa.SelecionarRegistroPorId(abrirVM.MesaId);
+        Garcom garcomSelecionado = repositorioGarcom.SelecionarRegistroPorId(abrirVM.GarcomId);
 
-//            return View(deleteTableViewModel);
-//        }
+        Conta conta = new Conta(
+            abrirVM.Titular,
+            mesaSelecionada,
+            garcomSelecionado
+        );
 
-//        [HttpPost]
-//        public IActionResult Delete(DeleteTableViewModel deleteTableViewModel)
-//        {
-            
-//            tableRepository.DeleteRegister(deleteTableViewModel.Id);
-//            return RedirectToAction(nameof(Index));
-//        }
-//    }
-//}
+        repositorioConta.CadastrarRegistro(conta);
+
+        return RedirectToAction(nameof(Index));
+    }
+}

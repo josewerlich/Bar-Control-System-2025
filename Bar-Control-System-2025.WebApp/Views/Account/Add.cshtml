@@ -4,22 +4,40 @@
 
 @model AddTableViewModel;
 
-<div class="row justify-content-center">
-    <form class="col-6" method="post" asp-action="Add">   
-        <div class="mb-3">
-                <label asp-for="TableNumber" class="form-label">Table Number</label>
-                <input class="form-control" asp-for="TableNumber">
-                <span asp-validation-for="TableNumber" class="text-danger"></span>
-        </div>
+@model AbrirContaViewModel;
 
-        <div class="mb-3">
-                <label asp-for="TableSize" class="form-label">Table Size</label>
-                <input class="form-control" asp-for="TableSize">
-                <span asp-validation-for="TableSize" class="text-danger"></span>
+@{
+    ViewBag.Titulo = "Abertura de Conta";
+}
+
+<div class="row justify-content-center my-5">
+    <div class="col-md-8">
+        <div class="card rounded-4 border-0">
+            <div class="card-body p-md-5">
+                <form asp-action="Abrir" method="post">
+                    <h3>Formulário de Abertura de Conta</h3>
+
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <label asp-for="Titular" class="control-label fs-5">Titular:</label>
+                        <input asp-for="Titular" class="form-control" />
+                        <span asp-validation-for="Titular" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <label asp-for="MesaId" class="control-label fs-5">Mesa:</label>
+                        <select asp-for="MesaId" asp-items="@Model.MesasDisponiveis" class="form-select"></select>
+                        <span asp-validation-for="MesaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <label asp-for="GarcomId" class="control-label fs-5">Garçom:</label>
+                        <select asp-for="GarcomId" asp-items="@Model.GarconsDisponiveis" class="form-select"></select>
+                        <span asp-validation-for="GarcomId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-end gap-3 mt-5">
+                        <a asp-action="Index">Voltar para a listagem</a>
+                        <button type="submit" class="btn btn-primary rounded-3 px-5">Confirmar</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="d-flex gap-2 justify-content-end">
-            <a asp-action="Index" class="btn btn-outline-primary px-4 ms-">Back</a>
-            <button class="btn btn-primary px-4">Save</button>
-        </div>
-    </form>
+    </div>
 </div>
