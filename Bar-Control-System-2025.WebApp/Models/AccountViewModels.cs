@@ -1,9 +1,11 @@
 ﻿
 using Bar_Control_System_2025.Domain.AccountModule;
+using Bar_Control_System_2025.Domain.ProductsModule;
 using Bar_Control_System_2025.Domain.TableModule;
 using Bar_Control_System_2025.Domain.WaiterModule;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Bar_Control_System_2025.WebApp.Models;
@@ -43,6 +45,47 @@ public class OpenAccountViewModel
             SelectListItem availableWaiter = new SelectListItem(w.Name.ToString(), w.Id.ToString());
 
             AvailableWaiters.Add(availableWaiter);
+        }
+    }
+}
+public class CloseAccountViewModel
+{
+    public int Id { get; set; }
+    public string Customer { get; set; }
+    public int Table { get; set; }
+    public string Waiter { get; set; }
+    public decimal TotalCost { get; set; }
+    public List<OrderAccountViewModel> Orders { get; set; }
+
+    public CloseAccountViewModel() { }
+
+    public CloseAccountViewModel(
+        int id,
+        string customer,
+        int table,
+        string waiter,
+        decimal totalCost,
+        List<Order> orders
+    )
+    {
+        Id = id;
+        Customer = customer;
+        Table = table;
+        Waiter = waiter;
+        TotalCost = totalCost;
+
+        Orders = new List<OrderAccountViewModel>();
+
+        foreach (var item in orders)
+        {
+            var orderAccountViewModel = new OrderAccountViewModel(
+                item.id,
+                item.Product.Name,
+                item.Quantity,
+                item.TotalCostPartial()
+            );
+
+            Orders.Add(orderAccountViewModel);
         }
     }
 }
@@ -131,3 +174,38 @@ public class OrderAccountViewModel
     }
 }
 
+public class ManageOrdersViewModel
+{
+    public DetailAccountViewModel Account { get; set; }
+    public List<SelectListItem> ProductsAvailable { get; set; }
+
+    public ManageOrdersViewModel() { }
+
+    public ManageOrdersViewModel(Account account, List<Product> products) : this()
+    {
+        Account = new DetailAccountViewModel(
+            account.Id,
+            account.Customer,
+            account.Table.TableNumber,
+            account.Waiter.Name,
+            account.StillOpen,
+            account.CalculateTotalCost(),
+            account.Orders
+        );
+
+        ProductsAvailable = new List<SelectListItem>();
+
+        foreach (var p in products)
+        {
+            var selectItem = new SelectListItem(p.Name, p.Id.ToString());
+
+            ProductsAvailable.Add(selectItem);
+        }
+    }
+}
+
+public class AddOrderViewModel
+{
+    public int IdProduct { get; set; }
+    public int Quantity { get; set; }
+}
