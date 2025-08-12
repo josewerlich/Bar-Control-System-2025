@@ -103,7 +103,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult ConfirmeClosing(int id)
+    public IActionResult ConfirmClosing(int id)
     {
         Account selectedAccount = accountRepository.SelectRegisterID(id);
 

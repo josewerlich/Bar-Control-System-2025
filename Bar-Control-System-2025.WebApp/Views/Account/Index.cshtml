@@ -1,20 +1,38 @@
 ﻿
+@model ViewAccountViewModel
+
 @{
     ViewBag.Title = "Account Viewer";
 }
 
-@model ViewAccountViewModel;
+<div class="d-flex gap-2 align-items-center">
+    <a class="btn btn-primary" asp-action="Open">
+        <i class="bi bi-plus"></i>
+        Open Account
+    </a>
 
-<a class="btn btn-primary" asp-action="Open">
-    <i class="bi bi-plus"></i>
-    Open new
-</a>
+    <a class="btn btn-outline-primary" asp-action="Index">
+        @* <i class="bi bi-plus"></i> *@
+        All Accounts
+    </a>
+
+    <a class="btn btn-outline-primary" asp-action="Index" asp-route-status="open">
+        @* <i class="bi bi-plus"></i> *@
+        Open Accounts
+    </a>
+
+    <a class="btn btn-outline-primary" asp-action="Index" asp-route-status="closed">
+        @* <i class="bi bi-plus"></i> *@
+        Closed Accounts
+    </a>
+</div>
+
 
 <div class="row mt-4">
     @foreach (DetailAccountViewModel a in Model.Registers)
     {
         <div class="col-3">
-            <div class="card">
+            <div class="card h-100">
                 <div class="card-body">
                     <h5 class="card-title">@a.Customer</h5>
                     <p class="card-text mb-0"><strong>Table:</strong> #@a.Table</p>
@@ -22,14 +40,20 @@
 
                     @if (a.StillOpen)
                     {
-                        <span class="d-flex gap-1 justify-content-end mt-4">
-                            <a title="Manage Orders" asp-action="ManageOrders" asp-route-id="@a.Id" style="height: 35px; width: 35px;" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center">
+                        <span class="d-flex gap-1 justify-content-end">
+                            <a title="Manager Orders" asp-action="ManagerOrders" asp-route-id="@a.Id" style="height: 33px; width: 35px;" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center">
                                 <i class="bi bi-cart"></i>
                             </a>
-                            <a title="Close Account" asp-action="Close" asp-route-id="@a.Id" style="height: 35px; width: 35px;" class="btn btn-success rounded-circle d-flex justify-content-center align-items-center">
+                            <a title="Close Account" asp-action="Close" asp-route-id="@a.Id" style="height: 33px; width: 35px;" class="btn btn-success rounded-circle d-flex justify-content-center align-items-center">
                                 <i class="bi bi-cash-coin"></i>
                             </a>
                         </span>
+                    }
+                    else
+                    {
+                        <a title="Details" asp-action="Details" asp-route-id="@a.Id" style="height: 33px; width: 35px;" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center ms-auto">
+                            <i class="bi bi-search"></i>
+                        </a>
                     }
                 </div>
             </div>
