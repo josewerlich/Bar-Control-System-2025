@@ -1,0 +1,94 @@
+﻿@model ManageOrdersViewModel
+
+@{
+    ViewBag.Titulo = "Manage Orders";
+}
+
+<div class="row justify-content-center">
+    <div class="col">
+        <div class="card rounded-4 border-0">
+            <div class="card-body p-md-5">
+                <h3>Manage Orders</h3>
+
+                <div class="row my-3">
+                    <div class="mt-2">
+                        <label class="control-label"><strong>Customer:</strong> @Model.Account.Customer</label>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="control-label"><strong>Table:</strong> @Model.Account.Table</label>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="control-label"><strong>Waiter:</strong> @Model.Account.Waiter</label>
+                    </div>
+                </div>
+
+                <h4 class="my-3">Orders</h4>
+
+                <form class="d-flex flex-wrap gap-2 align-items-center" asp-action="AddOrder" asp-route-id="@Model.Account.Id" method="post">
+                    <div class="col-12 col-md-7">
+                        <label class="control-label">Product: </label>
+
+                        <select class="form-select w-100" name="IdProduct" asp-items="@Model.ProductsAvailable">
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <label class="control-label">Quantity: </label>
+                        <input type="number" min="1" value="1" name="Quantity" class="form-control w-100" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary align-self-end col">
+                        Add
+                    </button>
+                </form>
+
+                @if (!Model.Account.Orders.Any())
+                {
+                    <p class="fw-semibold mt-3">There is no Orders for the account...</p>
+                }
+                else
+                {
+                    <table class="table table-sm table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Cost</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OrderAccountViewModel order in Model.Account.Orders)
+                            {
+                                <tr>
+                                    <td>@order.Product</td>
+                                    <td>@order.Quantity</td>
+                                    <td>@order.PartialTotal.ToString("C2")</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <form asp-action="RemoveOrder" asp-route-id="@Model.Account.Id" asp-route-idOrder="@order.Id" method="post">
+                                                <button class="btn btn-sm btn-danger" title="Remove">
+                                                    <i class="bi bi-trash3"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+
+                <div class="d-flex justify-content-end mt-3">
+                    <label class="control-label"><strong>Total:</strong> @Model.Account.TotalCost.ToString("C2")</label>
+                </div>
+
+                <div class="form-group d-flex align-items-center justify-content-end gap-3 mt-3">
+                    <a asp-action="Index">Back to the order list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

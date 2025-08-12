@@ -23,7 +23,7 @@
                     @if (a.StillOpen)
                     {
                         <span class="d-flex gap-1 justify-content-end mt-4">
-                            <a title="Manage Orders" asp-action="ManagerOrders" asp-route-id="@a.Id" style="height: 35px; width: 35px;" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center">
+                            <a title="Manage Orders" asp-action="ManageOrders" asp-route-id="@a.Id" style="height: 35px; width: 35px;" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center">
                                 <i class="bi bi-cart"></i>
                             </a>
                             <a title="Close Account" asp-action="Close" asp-route-id="@a.Id" style="height: 35px; width: 35px;" class="btn btn-success rounded-circle d-flex justify-content-center align-items-center">

@@ -4,10 +4,13 @@ namespace Bar_Control_System_2025.Domain.AccountModule;
 
 public class Order
 {
-    public int id;
-    public Product Product;
-    public int Quantity;
+    public int id { get; set; }
+    public Product Product { get; set; }
+    public int Quantity { get; set; }
+
     private static int idCounter = 0;
+
+    public Order() { }  
 
     public Order(Product product, int quantity)
     {

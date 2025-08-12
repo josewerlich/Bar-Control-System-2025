@@ -1,0 +1,66 @@
+﻿@model CloseAccountViewModel
+
+@{
+    ViewBag.Titulo = "Close Account";
+}
+
+<div class="row justify-content-center">
+    <div class="col">
+        <div class="card rounded-4 border-0">
+            <div class="card-body p-md-5">
+                <form asp-action="ConfirmClosing" asp-route-id="@Model.Id">
+                    <h3>Account closing confirmation</h3>
+
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <label asp-for="Customer" class="control-label fs-5">Customer:</label>
+                        <input asp-for="Customer" class="form-control" readonly disabled />
+                    </div>
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <label asp-for="Table" class="control-label fs-5">Table:</label>
+                        <input asp-for="Table" class="form-control" readonly disabled />
+                    </div>
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <label asp-for="Waiter" class="control-label fs-5">Waiter:</label>
+                        <input asp-for="Waiter" class="form-control" readonly disabled />
+                    </div>
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <label asp-for="TotalCost" class="control-label fs-5">Valor Total (R$):</label>
+                        <input asp-for="TotalCost" type="number" min="0" step="0.01" pattern="^\d+(?:\,\d{1,2})?$" class="form-control" readonly disabled />
+                    </div>
+
+                    @if (!Model.Orders.Any())
+                    {
+                        <p class="fw-semibold mt-3">There is no order created for the account...</p>
+                    }
+                    else
+                    {
+                        <table class="table table-sm table-striped mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (OrderAccountViewModel order in Model.Orders)
+                                {
+                                    <tr>
+                                        <td>@order.Product</td>
+                                        <td>@order.Quantity</td>
+                                        <td>@order.PartialTotal.ToString("C2")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                    <div class="form-group d-flex align-items-center justify-content-end gap-3 mt-5">
+                        <a asp-action="Index">Back to the list</a>
+                        <button type="submit" class="btn btn-danger rounded-3 px-5">Confirm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
